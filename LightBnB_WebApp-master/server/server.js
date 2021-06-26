@@ -1,7 +1,6 @@
 const database = require('./database');
 const apiRoutes = require('./apiRoutes');
 const userRoutes = require('./userRoutes');
-const { Pool } = require('pg');
 
 const path = require('path');
 
@@ -10,15 +9,6 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
 const app = express();
-
-
-const pool = new Pool({
-  user: 'vagrant',
-  password: '123',
-  host: 'localhost',
-  database: 'lightbnb'
-});
-
 
 app.use(cookieSession({
   name: 'session',
@@ -44,7 +34,5 @@ app.get("/test", (req, res) => {
   res.send("🤗");
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.listen(port, (err) => console.log(err || `listening on port ${port} 😎`));
-
-module.exports = { pool };
